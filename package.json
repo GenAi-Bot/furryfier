@@ -5,7 +5,7 @@
   "types": "types/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build -- --declaration"
   },
   "keywords": [],
   "author": "",
