@@ -2,10 +2,10 @@
   "name": "furryfier",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build -- --declaration"
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",
