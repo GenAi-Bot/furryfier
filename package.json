@@ -8,11 +8,10 @@
     "prepare": "npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "bit0r1n",
+  "license": "MIT",
   "description": "Furrify your text ^~^",
   "devDependencies": {
-    "@types/node": "^24.0.4",
     "typescript": "^5.8.3"
   }
 }
