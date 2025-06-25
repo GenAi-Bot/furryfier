@@ -1,6 +1,9 @@
-import { randomInt } from 'crypto'
 import { FurryfierConfig } from './interfaces'
 import { defaultFurryfierConfig } from './defaultFurryfierConfig'
+
+function randomInt(min: number, max: number): number {
+  return Math.random() * (max - min) + min;
+}
 
 function getRandomSlang(config: FurryfierConfig): string {
   const weights = config.slangs
