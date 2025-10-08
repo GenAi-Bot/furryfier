@@ -1,5 +1,6 @@
 import { FurryfierConfig } from './interfaces'
 import { defaultFurryfierConfig } from './defaultFurryfierConfig'
+import {protectText, restoreProtectedText} from "./protectText";
 
 function randomInt(min: number, max: number): number {
   return Math.random() * (max - min) + min;
@@ -77,14 +78,15 @@ function handleText(input: string, config: FurryfierConfig): string {
  * @returns Furrified string
  */
 export function furrify(input: string, config: FurryfierConfig = defaultFurryfierConfig): string {
-  let text = handleText(input, config)
+  const { protectedText, protectedParts } = protectText(input, config.protection)
+
+  let text = handleText(protectedText, config)
   text = handleBetweenSentences(text, config)
 
   const builder: string[] = []
-
   handleStart(builder, config)
   builder.push(text)
   handleEnd(builder, config)
 
-  return builder.join('')
+  return restoreProtectedText(builder.join(''), protectedParts)
 }
