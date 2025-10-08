@@ -1,35 +1,40 @@
-import {ProtectedPatternsConfig} from "./interfaces";
+import { ProtectedPatternsConfig } from './interfaces'
 
-export type ProtectedPart = { placeholder: string; original: string };
+export interface ProtectedPart {
+  placeholder: string
+  original: string
+}
 
-export function protectText(input: string, config: ProtectedPatternsConfig): {
-    protectedText: string;
-    protectedParts: ProtectedPart[];
-} {
-    const protectedParts: ProtectedPart[] = [];
-    let index = 0;
+export interface ProtectedTextResult {
+  protectedText: string
+  protectedParts: ProtectedPart[]
+}
 
-    const patterns = [...config.protectedPatterns];
+export function protectText(input: string, config: ProtectedPatternsConfig): ProtectedTextResult {
+  const protectedParts: ProtectedPart[] = []
+  let index = 0
 
-    if (config.enableDiscordMode && config.discordProtectedPatterns) {
-        patterns.push(...config.discordProtectedPatterns);
-    }
+  const patterns = [...config.protectedPatterns]
 
-    const fullPattern = new RegExp(patterns.map(r => r.source).join('|'), 'g');
+  if (config.enableDiscordMode && config.discordProtectedPatterns) {
+    patterns.push(...config.discordProtectedPatterns)
+  }
 
-    const protectedText = input.replace(fullPattern, (match) => {
-        const placeholder = "ඞ".repeat(index + 1);
-        protectedParts.push({ placeholder, original: match });
-        index++;
-        return placeholder;
-    });
+  const fullPattern = new RegExp(patterns.map(r => r.source).join('|'), 'g')
 
-    return { protectedText, protectedParts };
+  const protectedText = input.replace(fullPattern, (match) => {
+    const placeholder = "ඞ".repeat(index + 1)
+    protectedParts.push({ placeholder, original: match })
+    index++
+    return placeholder
+  });
+
+  return { protectedText, protectedParts }
 }
 
 export function restoreProtectedText(text: string, protectedParts: ProtectedPart[]): string {
-    for (const part of protectedParts) {
-        text = text.replace(part.placeholder, part.original);
-    }
-    return text;
+  for (const part of protectedParts) {
+    text = text.replace(part.placeholder, part.original)
+  }
+  return text
 }
