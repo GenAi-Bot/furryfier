@@ -1,4 +1,4 @@
-import { FurryfierConfig } from "./interfaces"
+import { FurryfierConfig } from './interfaces'
 
 export const defaultFurryfierConfig: FurryfierConfig = {
   protection: {
