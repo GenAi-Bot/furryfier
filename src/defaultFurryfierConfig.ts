@@ -1,6 +1,15 @@
-import { FurryfierConfig } from "./interfaces"
+import { FurryfierConfig } from './interfaces'
 
 export const defaultFurryfierConfig: FurryfierConfig = {
+  protection: {
+    protectedPatterns: [
+      /https?:\/\/\S+/g,
+    ],
+    enableDiscordMode: true,
+    discordProtectedPatterns: [
+      /<[^>]*>/g
+    ],
+  },
   startChance: 40,
   startDuplicationChance: 10,
   endChance: 30,

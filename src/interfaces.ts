@@ -15,7 +15,19 @@ export interface LetterReplacements {
   [key: string]: ReplacementWithChance
 }
 
+export interface ProtectedPatternsConfig {
+  /** List of protected patterns */
+  protectedPatterns: RegExp[]
+  /** Enable discord protection mode */
+  enableDiscordMode: boolean
+  /** Discord-specific protection patterns */
+  discordProtectedPatterns: RegExp[]
+}
+
 export interface FurryfierConfig {
+  /** Protection config */
+  protection: ProtectedPatternsConfig
+
   /** Chance of adding random slang to start of text */
   startChance: number
   /** Maximum count of slangs to add at start of text */
