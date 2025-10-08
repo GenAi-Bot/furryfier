@@ -1,6 +1,6 @@
 import { FurryfierConfig } from './interfaces'
 import { defaultFurryfierConfig } from './defaultFurryfierConfig'
-import {protectText, restoreProtectedText} from "./protectText";
+import { protectText, restoreProtectedText } from './protectText'
 
 function randomInt(min: number, max: number): number {
   return Math.random() * (max - min) + min;
